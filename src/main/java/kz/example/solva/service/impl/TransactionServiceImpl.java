@@ -49,7 +49,7 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionMapper.mapTransactionToTransactionDto(transaction);
     }
 
-    private void checkLimit(Transaction transaction) {
+    void checkLimit(Transaction transaction) {
         LocalDateTime createdAfter = getStartOfMonth();
         Optional<Limit> limit = limitComponent.findLastAddedLimitByCategoryInThisMonth(transaction.getExpenseCategory(), createdAfter);
         double transactionSumInUSD = transaction.getSum();
